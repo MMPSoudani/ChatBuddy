@@ -76,8 +76,8 @@ class RegisterView(View):
         context = {
             "register_form": RegisterForm(request.POST),
         }
-        if self.context.get("register_form").is_valid():
-            form_data = self.context.get("register_form").cleaned_data
+        if context.get("register_form").is_valid():
+            form_data = context.get("register_form").cleaned_data
             User.objects.create_user(email=form_data.get("email"), username=form_data.get("username"), password=form_data.get("password_1"))
             messages.success(request, "Registration finished successfully")
             return redirect("main:login")
